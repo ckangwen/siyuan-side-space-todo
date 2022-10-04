@@ -1,0 +1,30 @@
+{
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser",
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "extends": [
+    "plugin:vue/vue3-recommended",
+    "@charrue/typescript",
+    "prettier",
+    "plugin:prettier/recommended"
+  ],
+
+  "parser": "vue-eslint-parser",
+  "rules": {
+    "@typescript-eslint/brace-style": ["warn", "1tbs", { "allowSingleLine": false }],
+    "no-magic-numbers": "off",
+    "no-param-reassign": "off",
+    "import/no-unresolved": "off",
+    "no-console": ["warn", { "allow": ["warn", "error"] }]
+  },
+  "globals": {
+    "defineProps": "readonly",
+    "defineEmits": "readonly",
+    "defineExpose": "readonly"
+  }
+}

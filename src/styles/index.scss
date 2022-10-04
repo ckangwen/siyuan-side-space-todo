@@ -1,0 +1,11 @@
+@import "./iconfont.scss";
+@import "./component.scss";
+
+:root {
+  --task-action-border-color: #ebeef5;
+  --task-shadow: rgb(15 15 15 / 10%) 0px 0px 0px 1px,
+    rgb(15 15 15 / 10%) 0px 2px 4px;
+  --task-background-color: #fff;
+  --task-foreground-color: #5d5d9e;
+  --task-border-radius: 4px;
+}
