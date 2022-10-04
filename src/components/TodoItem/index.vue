@@ -6,7 +6,12 @@ const props = defineProps<{
   completed: boolean;
 }>();
 
-const emits = defineEmits(["update:title", "update:completed", "delete"]);
+const emits = defineEmits([
+  "update:title",
+  "update:completed",
+  "delete",
+  "checked",
+]);
 
 const {
   inputRef,

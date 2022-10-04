@@ -1,8 +1,4 @@
-export const WIDGET_CLASS_NAME = "siyuan-side-space-todo-view";
-export const WIDGET_VISIBLE_CLASS_NAME = "is-visible";
-export const SIDE_BALL_CLASS_NAME = "siyuan-side-space-todo-ball";
-
-export const STYLE_ID = "siyuan-side-space-todo-style";
+import { STYLE_ID } from "./helper";
 
 export const insertCSS = (doc: Document, styleText: string) => {
   let el = doc.getElementById(STYLE_ID);
@@ -30,4 +26,14 @@ export const removeClassName = (dom: HTMLElement, clz: string) => {
   if (classList.contains(clz)) {
     classList.remove(clz);
   }
+};
+
+export const getCurrentPageId = (doc: Document) => {
+  const nodeIdEl = doc?.querySelector(
+    "#layouts div.layout__center div.layout-tab-container div.protyle-content > div.protyle-background"
+  );
+
+  if (!nodeIdEl) return "";
+
+  return nodeIdEl.getAttribute("data-node-id") || "";
 };

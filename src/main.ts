@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import { create, NInput, NDropdown, NCheckbox } from "naive-ui";
-import { fixSiYuanStyle } from "./siyuan";
+import { fixSiYuanStyle, startService } from "./siyuan";
 
 import "@unocss/reset/tailwind.css";
 import "uno.css";
@@ -16,4 +16,5 @@ app.use(naive);
 
 app.mount("#app").$nextTick(() => {
   fixSiYuanStyle();
+  startService();
 });

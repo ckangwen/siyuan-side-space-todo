@@ -61,7 +61,6 @@ export const useTodoItem = (
   };
 
   const onTaskActionSelect = (key: string) => {
-    console.log(key);
     if (key === "delete") {
       emit("delete");
     }
