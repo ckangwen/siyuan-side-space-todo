@@ -17,6 +17,7 @@ import {
   BLOCK_TITLE,
   last,
   NODE_ID_RE,
+  ACTIVE_CONTENT_SELECTOR,
 } from "./utils/helper";
 
 const iframe = window.frameElement as HTMLIFrameElement | null;
@@ -148,9 +149,10 @@ export const fixSiYuanStyle = () => {
       top: 50%;
       transform: translateY(-50%);
       cursor: pointer;
-      background: #000;
       border-radius: 50%;
       z-index: 100;
+      background: linear-gradient(to right, rgb(165, 180, 252), rgb(192, 132, 252));
+      padding: 2px;
     }
     .${SIDE_BALL_CLASS_NAME}::before {
       content: " ";
@@ -167,11 +169,25 @@ export const fixSiYuanStyle = () => {
   `
   );
 
-  let ball = parentDocument.querySelector(`.${SIDE_BALL_CLASS_NAME}`);
+  const activeContainerEl = parentDocument.querySelector(
+    ACTIVE_CONTENT_SELECTOR
+  );
+  let ball = activeContainerEl?.querySelector(`.${SIDE_BALL_CLASS_NAME}`);
   if (!ball) {
     ball = parentDocument.createElement("div");
     ball.setAttribute("class", SIDE_BALL_CLASS_NAME);
+    ball.innerHTML = `
+<svg version="1.1" id="L1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve" style="width: 100%;height: 100%;">
+    <circle fill="none" stroke="#fff" stroke-width="6" stroke-miterlimit="10" stroke-dasharray="14.2472,14.2472" cx="50" cy="50" r="47">
+      <animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="10s" from="0 50 50" to="360 50 50" repeatCount="indefinite"></animateTransform>
+  </circle>
+  <circle fill="none" stroke="#fff" stroke-width="4" stroke-miterlimit="10" stroke-dasharray="10,10" cx="50" cy="50" r="30">
+      <animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="5s" from="0 50 50" to="-360 50 50" repeatCount="indefinite"></animateTransform>
+  </circle>
+</svg>`.trim();
   }
+
+  activeContainerEl?.appendChild(ball);
 
   let timeoutId: NodeJS.Timeout | null = null;
   const showContent = () => {
@@ -217,8 +233,6 @@ export const fixSiYuanStyle = () => {
     "mouseenter",
     postMessageToCloseContent,
   ]);
-
-  parentDocument.body.appendChild(ball);
 };
 
 const getBlockKramdownList = async (nodeId: string): Promise<string[]> => {

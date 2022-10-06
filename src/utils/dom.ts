@@ -1,4 +1,4 @@
-import { STYLE_ID } from "./helper";
+import { STYLE_ID, ACTIVE_CONTENT_SELECTOR } from "./helper";
 
 export const insertCSS = (doc: Document, styleText: string) => {
   let el = doc.getElementById(STYLE_ID);
@@ -29,8 +29,11 @@ export const removeClassName = (dom: HTMLElement, clz: string) => {
 };
 
 export const getCurrentPageId = (doc: Document) => {
+  // fn__flex-1 protyle
+  // fn__flex-1 protyle fn__none
+  // parent.parent. !has('fn__none')
   const nodeIdEl = doc?.querySelector(
-    "#layouts div.layout__center div.layout-tab-container div.protyle-content > div.protyle-background"
+    `${ACTIVE_CONTENT_SELECTOR} >div.protyle-content > div.protyle-background`
   );
 
   if (!nodeIdEl) return "";
